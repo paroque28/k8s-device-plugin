@@ -5,7 +5,7 @@ metadata:
 spec:
   restartPolicy: OnFailure
   containers:
-  - image: nvidia/cuda
+  - image: paroque28/l4t-tensorflow
     name: pod1-ctr
     command: ["sleep"]
     args: ["100000"]
