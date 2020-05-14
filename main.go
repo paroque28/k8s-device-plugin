@@ -17,13 +17,14 @@
 package main
 
 import (
+	"flag"
 	"log"
 	"os"
 	"syscall"
 
 	"github.com/NVIDIA/gpu-monitoring-tools/bindings/go/nvml"
 	"github.com/fsnotify/fsnotify"
-	pluginapi "k8s.io/kubernetes/pkg/kubelet/apis/deviceplugin/v1beta1"
+	pluginapi "k8s.io/kubelet/pkg/apis/deviceplugin/v1beta1"
 )
 
 func getAllPlugins() []*NvidiaDevicePlugin {
@@ -37,6 +38,8 @@ func getAllPlugins() []*NvidiaDevicePlugin {
 }
 
 func main() {
+	flag.Parse()
+
 	log.Println("Loading NVML")
 	if err := nvml.Init(); err != nil {
 		log.Printf("Failed to initialize NVML: %s.", err)
